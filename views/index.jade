@@ -3,30 +3,49 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  p You were feeling #{feeling}
+  form(action="/", method="POST")
+    input(name="feeling", type="text")
+    input(value="Submit", type="submit")
   div
-    canvas(id="myChart")
+    canvas(id="myChart", style="width:60%")
   script(src="javascripts/chart.js")
   script.
+    current = !{JSON.stringify(current)};
+    console.log(current);
+
     const data = {
-      labels: [
-        'Red',
-        'Blue',
-        'Yellow'
-      ],
       datasets: [{
-        label: 'My First Dataset',
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
+        label: 'Mood Graph',
         hoverOffset: 4
-      }]
-    };
+      }],
+    }
+
+    dataArray = []
+    colourArray = []
+    labelArray = []
+    date = 1
+    for(const feeling of current){
+      if(feeling == "happy"){
+        dataArray.push(1);
+        colourArray.push('rgb(255, 205, 86)');
+      } else {
+        dataArray.push(1);
+        colourArray.push('rgb(54, 162, 235)');
+      }
+      labelArray.push(date.toString() + "/4/2021");
+      date += 1;
+    }
+    data.labels = labelArray;
+    data.datasets[0].data = dataArray;
+    data.datasets[0].backgroundColor = colourArray;
+    
     const config = {
       type: 'doughnut',
       data: data,
+      options: {
+          responsive: false
+      }
     };
     window.onload = function(){
       var myChart = new Chart(
