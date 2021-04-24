@@ -15,14 +15,14 @@
   --pink: #f50057;
   --red: #ff1744;
   --orange: #f6c343;
-  --yellow: #ffff00;
+  --yellow: #9d8ee6;
   --green: #5cc72a;
   --teal: #1de9b6;
   --cyan: #00e5ff;
   --white: #ffffff;
   --gray: #868e96;
   --gray-dark: #343a40;
-  --primary: #ffff00;
+  --primary: #9d8ee6;
   --secondary: #0000ff;
   --success: #5cc72a;
   --info: #00e5ff;
@@ -1156,7 +1156,7 @@ mark,
   .form-control:focus {
     color: #000000;
     background-color: #ffffff;
-    border-color: #ffff00;
+    border-color: #9d8ee6;
     outline: 0;
     box-shadow: none; }
   .form-control::-webkit-input-placeholder {
@@ -1536,26 +1536,26 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #212529;
-  background-color: #ffff00;
-  border-color: #ffff00; }
+  background-color: #9d8ee6;
+  border-color: #9d8ee6; }
   .btn-primary:hover {
     color: #212529;
-    background-color: #d9d900;
-    border-color: #cccc00; }
+    background-color: #9d8ee6;
+    border-color: #9d8ee6; }
   .btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 0.2rem rgba(255, 255, 0, 0.5); }
+    box-shadow: 0 0 0 0.2rem rgba(201, 194, 235, 0.5); }
   .btn-primary.disabled, .btn-primary:disabled {
     color: #212529;
-    background-color: #ffff00;
-    border-color: #ffff00; }
+    background-color: #9d8ee6;
+    border-color: #9d8ee6; }
   .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
   .show > .btn-primary.dropdown-toggle {
     color: #212529;
-    background-color: #cccc00;
-    border-color: #bfbf00; }
+    background-color: #9d8ee6;
+    border-color: #9d8ee6; }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-primary.dropdown-toggle:focus {
-      box-shadow: 0 0 0 0.2rem rgba(255, 255, 0, 0.5); }
+      box-shadow: 0 0 0 0.2rem rgba(201, 194, 235, 0.5); }
 
 .btn-secondary {
   color: #ffffff;
@@ -1719,24 +1719,24 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5); }
 
 .btn-outline-primary {
-  color: #ffff00;
+  color: #9d8ee6;
   background-color: transparent;
   background-image: none;
-  border-color: #ffff00; }
+  border-color: #9d8ee6; }
   .btn-outline-primary:hover {
     color: #212529;
-    background-color: #ffff00;
-    border-color: #ffff00; }
+    background-color: #9d8ee6;
+    border-color: #9d8ee6; }
   .btn-outline-primary:focus, .btn-outline-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 255, 0, 0.5); }
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
-    color: #ffff00;
+    color: #9d8ee6;
     background-color: transparent; }
   .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
   .show > .btn-outline-primary.dropdown-toggle {
     color: #212529;
-    background-color: #ffff00;
-    border-color: #ffff00; }
+    background-color: #9d8ee6;
+    border-color: #9d8ee6; }
     .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-primary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(255, 255, 0, 0.5); }
@@ -2192,12 +2192,12 @@ input[type="button"].btn-block {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #ffff00 !important; }
+  background-color: #9d8ee6 !important; }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #cccc00 !important; }
+  background-color:#c9c2eb !important; }
 
 .bg-secondary {
   background-color: #0000ff !important; }
@@ -2292,7 +2292,7 @@ button.bg-dark:focus {
   border-left: 0 !important; }
 
 .border-primary {
-  border-color: #ffff00 !important; }
+  border-color: #9d8ee6 !important; }
 
 .border-secondary {
   border-color: #0000ff !important; }
@@ -4880,7 +4880,7 @@ button.bg-dark:focus {
   color: #ffffff !important; }
 
 .text-primary {
-  color: #ffff00 !important; }
+  color: #9d8ee6 !important; }
 
 a.text-primary:hover, a.text-primary:focus {
   color: #cccc00 !important; }
@@ -5004,10 +5004,10 @@ a.text-dark:hover, a.text-dark:focus {
 Custom CSS
 *****************/
 ::-moz-selection {
-  background-color: #ffff00;
+  background-color: #9d8ee6;
   color: #000000; }
 ::selection {
-  background-color: #ffff00;
+  background-color: #9d8ee6;
   color: #000000; }
 
 a:not(.heading-brand) {
@@ -5086,7 +5086,7 @@ footer a {
 
 /*Gradients*/
 .bg-gradient {
-  background: linear-gradient(#ffff00, #ffff4d); }
+  background: linear-gradient(#9d8ee6, #c9c2eb); }
 
 /*Code Window*/
 .code-window {

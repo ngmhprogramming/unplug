@@ -51,7 +51,7 @@ router.post('/', async function(req, res, next) {
   if(current === undefined){
     current = [];
   }
-  current.push(feeling);
+  if(feeling != "Unknown") current.push(feeling);
   if(current.length > 30) current.shift();
   res.cookie("data", current);
   res.render('index', { title: "Unplug.", feeling: feeling, current: current});
