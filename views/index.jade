@@ -3,7 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p You were feeling #{feeling}
+  if locals.feeling
+    p You were feeling #{feeling}
   form(action="/", method="POST")
     input(name="feeling", type="text")
     input(value="Submit", type="submit")
@@ -36,6 +37,12 @@ block content
       labelArray.push(date.toString() + "/4/2021");
       date += 1;
     }
+    while(dataArray.length <= 30){
+      dataArray.push(1);
+      colourArray.push('rgb(211, 211, 211)');
+      labelArray.push(date.toString() + "/4/2021");
+      date += 1;
+    }
     data.labels = labelArray;
     data.datasets[0].data = dataArray;
     data.datasets[0].backgroundColor = colourArray;
@@ -44,7 +51,13 @@ block content
       type: 'doughnut',
       data: data,
       options: {
-          responsive: false
+        responsive: false,
+        plugins: {
+          legend: {
+            display: false,
+            position: "right",
+          },
+        }
       }
     };
     window.onload = function(){
