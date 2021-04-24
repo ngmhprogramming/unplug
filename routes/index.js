@@ -7,9 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 function evaluate(text){
-  if(text.includes("sad")){
-    return "sad";
-  } else return "happy";
+  emotions = ["happy", "sad", "angry", "fear", "calm", "confusion"];
+  for(const emotion of emotions){
+    if(text.includes(emotion)) return emotion;
+  }
+  return "happy";
 }
 
 router.post('/', function(req, res, next) {
