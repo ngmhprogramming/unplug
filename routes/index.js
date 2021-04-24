@@ -51,10 +51,12 @@ router.post('/', async function(req, res, next) {
   if(current === undefined){
     current = [];
   }
+  failed = false;
   if(feeling != "Unknown") current.push(feeling);
+  else failed = true;
   if(current.length > 30) current.shift();
   res.cookie("data", current);
-  res.render('index', { title: "Unplug.", feeling: feeling, current: current});
+  res.render('index', { title: "Unplug.", feeling: feeling, current: current, failed: failed});
 });
 
 module.exports = router;
