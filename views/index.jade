@@ -1,68 +1,249 @@
-extends layout
+doctype html
+html(lang='en')
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Unplug - The mental health self help platform
+    meta(name='description' content='Prism is a beautiful Bootstrap 4 template for open-source landing pages.')
+    // Google font
+    link(href='https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800' rel='stylesheet')
+    // Bootstrap CSS / Color Scheme
+    link(rel='stylesheet' href='css/bootstrap.css')
+  body
+    // Header Section
+    section.bg-gradient.pt-5.pb-6
+      .container
+        .row
+          .col-12.d-flex.flex-row.align-items-center.justify-content-between
+            .heading-brand Unplug
+            a.btn.btn-dark(href='https://prismjs.com/download.html' target='_blank') Bruh
+        .row.mt-6
+          .col-md-8.mx-auto.text-center
+            h1 Syntax Highlighter for Every Language
+            p.lead.mb-5
+              | Prism is a lightweight, extensible syntax highlighter, built with modern web
+              | standards in mind. It’s used in thousands of websites, including some of those you visit daily.
+            a.btn.btn-success.svg-icon(href='https://github.com/LeaVerou/prism/')
+              em.mr-2(data-feather='github')
+              |                     Contribute
+        .row.mt-5
+          .col-md-9.mx-auto
+            .code-window
+              .dots
+                .red
+                .orange
+                .green
+                form(action="/", method="POST")
+                  input(name="feeling", type="text")
+                  input(value="Submit", type="submit")
+    // Features Section
+    section.py-6
+      .container
+        .row
+          .col-md-8.mx-auto
+            h2.text-center.text-md-left
+              | Your Mood Graph for 
+              span.text-success April 2021
+            div
+              canvas(id="myChart")
+            script(src="javascripts/chart.js")
+            script.
+              current = !{JSON.stringify(current)};
+              console.log(current);
 
-block content
-  h1= title
-  p Welcome to #{title}
-  if locals.feeling
-    p You were feeling #{feeling}
-  form(action="/", method="POST")
-    input(name="feeling", type="text")
-    input(value="Submit", type="submit")
-  div
-    canvas(id="myChart", style="width:60%")
-  script(src="javascripts/chart.js")
-  script.
-    current = !{JSON.stringify(current)};
-    console.log(current);
+              const data = {
+                datasets: [{
+                  label: 'Mood Graph',
+                  hoverOffset: 4
+                }],
+              }
 
-    const data = {
-      datasets: [{
-        label: 'Mood Graph',
-        hoverOffset: 4
-      }],
-    }
+              dataArray = []
+              colourArray = []
+              labelArray = []
+              date = 1
+              for(const feeling of current){
+                if(feeling == "happy"){
+                  dataArray.push(1);
+                  colourArray.push('rgb(255, 205, 86)');
+                } else {
+                  dataArray.push(1);
+                  colourArray.push('rgb(54, 162, 235)');
+                }
+                labelArray.push(date.toString() + "/4/2021");
+                date += 1;
+              }
+              while(dataArray.length < 30){
+                dataArray.push(1);
+                colourArray.push('rgb(211, 211, 211)');
+                labelArray.push(date.toString() + "/4/2021");
+                date += 1;
+              }
+              data.labels = labelArray;
+              data.datasets[0].data = dataArray;
+              data.datasets[0].backgroundColor = colourArray;
+              
+              const config = {
+                type: 'doughnut',
+                data: data,
+                options: { 
+                  responsive: false,
+                  plugins: {
+                    legend: {
+                      display: false,
+                      position: "top",
+                    },
+                  }
+                }
+              };
+              window.onload = function(){
+                var myChart = new Chart(
+                  document.getElementById('myChart'),
+                  config
+                );
+              }
+            .row.feature-grid
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='check-circle' width='28' height='28')
+                  .media-body
+                    | Dead Simple
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='command' width='28' height='28')
+                  .media-body
+                    | Highly Intuitive
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='feather' width='28' height='28')
+                  .media-body
+                    | Light as a Feather
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='zap' width='28' height='28')
+                  .media-body
+                    | Blazing Fast
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='git-pull-request' width='28' height='28')
+                  .media-body
+                    | Extensible
+              .col-sm-6
+                .media
+                  .icon-box
+                    .icon-box-inner
+                      span(data-feather='droplet' width='28' height='28')
+                  .media-body
+                    | Easy Styling
+    // Used By Section
+    section.pb-6
+      .container
+        .row
+          .col-md-8.mx-auto
+            h2.text-center.text-md-left Used by Thousands of Companies
+            p.lead.text-muted Prism.js is used on several websites, small and large.
+            .mt-5.d-flex.flex-row.justify-content-md-between.flex-wrap.press-icons
+              img(src='https://logo.clearbit.com/google.com?size=60' alt='Google')
+              img(src='https://logo.clearbit.com/twitter.com?size=60' alt='Twitter')
+              img(src='https://logo.clearbit.com/vuejs.org?size=60' alt='Veu.js')
+              img(src='https://logo.clearbit.com/stripe.com?size=60' alt='Stripe')
+    // footer
+    footer.py-5.bg-light
+      .container
+        .row
+          .col-12.text-center
+            ul.list-inline
+              li.list-inline-item
+                a(href='https://prismjs.com/test.html') Test Drive
+              li.list-inline-item
+                a(href='https://prismjs.com/extending.html') API Docs
+              li.list-inline-item
+                a(href='https://github.com/LeaVerou/prism/') Fork Prism.js on GitHub
+        .row.my-2
+          .col-md-4.mx-auto.text-muted.text-center.small-xl
+            | © 2019 Prism - All Rights Reserved
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js')
+    script(src='js/scripts.js')
 
-    dataArray = []
-    colourArray = []
-    labelArray = []
-    date = 1
-    for(const feeling of current){
-      if(feeling == "happy"){
-        dataArray.push(1);
-        colourArray.push('rgb(255, 205, 86)');
-      } else {
-        dataArray.push(1);
-        colourArray.push('rgb(54, 162, 235)');
+//
+  body
+    h1= title
+    p Welcome to #{title}
+    if locals.feeling
+      p You were feeling #{feeling}
+    form(action="/", method="POST")
+      input(name="feeling", type="text")
+      input(value="Submit", type="submit")
+    div
+      canvas(id="myChart", style="width:60%")
+    script(src="javascripts/chart.js")
+    script.
+      current = !{JSON.stringify(current)};
+      console.log(current);
+
+      const data = {
+        datasets: [{
+          label: 'Mood Graph',
+          hoverOffset: 4
+        }],
       }
-      labelArray.push(date.toString() + "/4/2021");
-      date += 1;
-    }
-    while(dataArray.length <= 30){
-      dataArray.push(1);
-      colourArray.push('rgb(211, 211, 211)');
-      labelArray.push(date.toString() + "/4/2021");
-      date += 1;
-    }
-    data.labels = labelArray;
-    data.datasets[0].data = dataArray;
-    data.datasets[0].backgroundColor = colourArray;
-    
-    const config = {
-      type: 'doughnut',
-      data: data,
-      options: {
-        responsive: false,
-        plugins: {
-          legend: {
-            display: false,
-            position: "right",
-          },
+
+      dataArray = []
+      colourArray = []
+      labelArray = []
+      date = 1
+      for(const feeling of current){
+        if(feeling == "happy"){
+          dataArray.push(1);
+          colourArray.push('rgb(255, 205, 86)');
+        } else {
+          dataArray.push(1);
+          colourArray.push('rgb(54, 162, 235)');
         }
+        labelArray.push(date.toString() + "/4/2021");
+        date += 1;
       }
-    };
-    window.onload = function(){
-      var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-      );
-    }
+      while(dataArray.length <= 30){
+        dataArray.push(1);
+        colourArray.push('rgb(211, 211, 211)');
+        labelArray.push(date.toString() + "/4/2021");
+        date += 1;
+      }
+      data.labels = labelArray;
+      data.datasets[0].data = dataArray;
+      data.datasets[0].backgroundColor = colourArray;
+      
+      const config = {
+        type: 'doughnut',
+        data: data,
+        options: { 
+          responsive: false,
+          plugins: {
+            legend: {
+              display: false,
+              position: "right",
+            },
+          }
+        }
+      };
+      window.onload = function(){
+        var myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+      }
