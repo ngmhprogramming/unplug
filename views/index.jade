@@ -63,20 +63,26 @@ html(lang='en')
               colourArray = []
               labelArray = []
               date = 1
+
+              //background #282C34
+              feelingColours = {
+                "happy": "#98c379",
+                "sad": "#61afef",
+                "angry": "#e06c75",
+                "calm": "#56b6c2",
+                "fear": "#e5c07b",
+                "confused": "#c678dd",
+              }
+
               for(const feeling of current){
-                if(feeling == "happy"){
-                  dataArray.push(1);
-                  colourArray.push('rgb(255, 205, 86)');
-                } else {
-                  dataArray.push(1);
-                  colourArray.push('rgb(54, 162, 235)');
-                }
+                dataArray.push(1);
+                colourArray.push(feelingColours[feeling]);
                 labelArray.push(date.toString() + "/4/2021");
                 date += 1;
               }
               while(dataArray.length < 30){
                 dataArray.push(1);
-                colourArray.push('rgb(211, 211, 211)');
+                colourArray.push('abb2bf');
                 labelArray.push(date.toString() + "/4/2021");
                 date += 1;
               }
@@ -108,44 +114,44 @@ html(lang='en')
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='check-circle' width='28' height='28')
+                      span(data-feather='smile' width='28' height='28' color="#98c379")
                   .media-body
-                    | Dead Simple
+                    | Happy
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='command' width='28' height='28')
+                      span(data-feather='frown' width='28' height='28' color="#61afef")
                   .media-body
-                    | Highly Intuitive
+                    | Sad
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='feather' width='28' height='28')
+                      span(data-feather='frown' width='28' height='28' color="#e06c75")
                   .media-body
-                    | Light as a Feather
+                    | Angry
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='zap' width='28' height='28')
+                      span(data-feather='meh' width='28' height='28' color="#56b6c2")
                   .media-body
-                    | Blazing Fast
+                    | Calm
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='git-pull-request' width='28' height='28')
+                      span(data-feather='meh' width='28' height='28' color='#e5c07b')
                   .media-body
-                    | Extensible
+                    | Fear
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='droplet' width='28' height='28')
+                      span(data-feather='meh' width='28' height='28' color='#c678dd')
                   .media-body
-                    | Easy Styling
+                    | Confusion
     // Used By Section
     section.pb-6
       .container
@@ -175,75 +181,7 @@ html(lang='en')
             | © 2019 Prism - All Rights Reserved
     // jQuery first, then Popper.js, then Bootstrap JS
     script(src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js')
     script(src='js/scripts.js')
-
-//
-  body
-    h1= title
-    p Welcome to #{title}
-    if locals.feeling
-      p You were feeling #{feeling}
-    form(action="/", method="POST")
-      input(name="feeling", type="text")
-      input(value="Submit", type="submit")
-    div
-      canvas(id="myChart", style="width:60%")
-    script(src="javascripts/chart.js")
-    script.
-      current = !{JSON.stringify(current)};
-      console.log(current);
-
-      const data = {
-        datasets: [{
-          label: 'Mood Graph',
-          hoverOffset: 4
-        }],
-      }
-
-      dataArray = []
-      colourArray = []
-      labelArray = []
-      date = 1
-      for(const feeling of current){
-        if(feeling == "happy"){
-          dataArray.push(1);
-          colourArray.push('rgb(255, 205, 86)');
-        } else {
-          dataArray.push(1);
-          colourArray.push('rgb(54, 162, 235)');
-        }
-        labelArray.push(date.toString() + "/4/2021");
-        date += 1;
-      }
-      while(dataArray.length <= 30){
-        dataArray.push(1);
-        colourArray.push('rgb(211, 211, 211)');
-        labelArray.push(date.toString() + "/4/2021");
-        date += 1;
-      }
-      data.labels = labelArray;
-      data.datasets[0].data = dataArray;
-      data.datasets[0].backgroundColor = colourArray;
-      
-      const config = {
-        type: 'doughnut',
-        data: data,
-        options: { 
-          responsive: false,
-          plugins: {
-            legend: {
-              display: false,
-              position: "right",
-            },
-          }
-        }
-      };
-      window.onload = function(){
-        var myChart = new Chart(
-          document.getElementById('myChart'),
-          config
-        );
-      }
