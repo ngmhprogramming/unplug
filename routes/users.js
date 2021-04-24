@@ -10,53 +10,30 @@ router.get('/', function(req, res, next) {
     url: 'https://api.kr-seo.tone-analyzer.watson.cloud.ibm.com/instances/f071a1ab-4152-420c-a0fd-ad9d6b72db45',
     version: '2017-09-21',
   });
-  const text =
-	'Team, I know that times are tough! Product ' +
-	'sales have been disappointing for the past three ' +
-	'quarters. We have a competitive product, but we ' +
-  'need to do a better job of selling it!';
+  const text = 'i am tentative';
 
   //anger fear joy sadness confident tentative
-  
-  toneAnalyzer.tone({tone_input:{text: text}}, (err, res) => {
+  valid = ["anger", "fear", "joy", "sadness"];
+  toneAnalyzer.tone({tone_input:{text: text}}, (err, resp) => {
+
     if (err) {
       console.log(err);
     } else {
-      let tones = res.document_tone.tones;
+      let tones = resp.document_tone.tones;
       console.log(tones);
-      let emotions = []; // put all emotions results in an array
   
+      var score = -1, emotion = "Unknown";
+      let final = emotion;
       for (let v of tones) {
-        if(v.score > 0) { // pulse only if the likelihood of an emotion is above the given confidencethreshold
-          console.log(`Current Emotion is ${v.tone_id}, ${v.score}`);
-          emotions.push(v.tone_id);
+        if(v.score > score && valid.includes(v.tone_id)){
+          score = v.score;
+          emotion = v.tone_name;
+          console.log(emotion);
         }
       }
-        
-      if(emotions.length) console.log(emotions);
     }
+    res.send("you are " + emotion);
   });
-  /*
-  a = []
-  axios
-    .post('https://api.kr-seo.tone-analyzer.watson.cloud.ibm.com/instances/f071a1ab-4152-420c-a0fd-ad9d6b72db45',
-      {
-        auth: {
-          username: "apikey",
-          password: "q6qFtVqLgf1so0kWuXkLsNTG7rrEKefShu9Ctx_OEvw0",
-        }
-      }
-    )
-    .then(res => {
-      console.log(`statusCode: ${res.statusCode}`)
-      a = res
-      console.log(res)
-    })
-    .catch(error => {
-      console.error(error)
-    })
-  */
-  res.send('ur mum ghey');
 });
 
 module.exports = router;
