@@ -3,13 +3,13 @@ html(lang='en')
   head
     // Required meta tags
     meta(charset='utf-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
     title Unplug - The mental health self help platform
-    meta(name='description' content='Prism is a beautiful Bootstrap 4 template for open-source landing pages.')
+    meta(name='description', content='Prism is a beautiful Bootstrap 4 template for open-source landing pages.')
     // Google font
-    link(href='https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800' rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800', rel='stylesheet')
     // Bootstrap CSS / Color Scheme
-    link(rel='stylesheet' href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/bootstrap.css')
   body
     // Header Section
     section.bg-gradient.pt-5.pb-6
@@ -17,7 +17,7 @@ html(lang='en')
         .row
           .col-12.d-flex.flex-row.align-items-center.justify-content-between
             .heading-brand Unplug
-            a.btn.btn-dark(href='https://prismjs.com/download.html' target='_blank') Bruh
+            a.btn.btn-dark(href='https://prismjs.com/download.html', target='_blank') Bruh
         .row.mt-6
           .col-md-8.mx-auto.text-center
             h1 Syntax Highlighter for Every Language
@@ -50,6 +50,7 @@ html(lang='en')
             script(src="javascripts/chart.js")
             script.
               current = !{JSON.stringify(current)};
+              while(current.length < 30) current.push("Unknown");
               console.log(current);
 
               const data = {
@@ -66,23 +67,16 @@ html(lang='en')
 
               //background #282C34
               feelingColours = {
-                "happy": "#98c379",
-                "sad": "#61afef",
-                "angry": "#e06c75",
-                "calm": "#56b6c2",
-                "fear": "#e5c07b",
-                "confusion": "#c678dd",
+                "Joy": "#98c379",
+                "Sadness": "#61afef",
+                "Anger": "#e06c75",
+                "Fear": "#e5c07b",
+                "Unknown": "#abb2bf",
               }
 
               for(const feeling of current){
                 dataArray.push(1);
                 colourArray.push(feelingColours[feeling]);
-                labelArray.push(date.toString() + "/4/2021");
-                date += 1;
-              }
-              while(dataArray.length < 30){
-                dataArray.push(1);
-                colourArray.push('#abb2bf');
                 labelArray.push(date.toString() + "/4/2021");
                 date += 1;
               }
@@ -114,44 +108,37 @@ html(lang='en')
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='smile' width='28' height='28' color="#98c379")
+                      span(data-feather='smile', width='28', height='28', color="#98c379")
                   .media-body
-                    | Happy
+                    | Joy
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='frown' width='28' height='28' color="#61afef")
+                      span(data-feather='frown', width='28', height='28', color="#61afef")
                   .media-body
-                    | Sad
+                    | Sadness
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='frown' width='28' height='28' color="#e06c75")
+                      span(data-feather='frown', width='28', height='28', color="#e06c75")
                   .media-body
-                    | Angry
+                    | Anger
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='meh' width='28' height='28' color="#56b6c2")
-                  .media-body
-                    | Calm
-              .col-sm-6
-                .media
-                  .icon-box
-                    .icon-box-inner
-                      span(data-feather='meh' width='28' height='28' color='#e5c07b')
+                      span(data-feather='meh', width='28', height='28', color='#e5c07b')
                   .media-body
                     | Fear
               .col-sm-6
                 .media
                   .icon-box
                     .icon-box-inner
-                      span(data-feather='meh' width='28' height='28' color='#c678dd')
+                      span(data-feather='meh', width='28', height='28', color='#abb2bf')
                   .media-body
-                    | Confusion
+                    | Unknown
     // Used By Section
     section.pb-6
       .container
@@ -160,10 +147,10 @@ html(lang='en')
             h2.text-center.text-md-left Used by Thousands of Companies
             p.lead.text-muted Prism.js is used on several websites, small and large.
             .mt-5.d-flex.flex-row.justify-content-md-between.flex-wrap.press-icons
-              img(src='https://logo.clearbit.com/google.com?size=60' alt='Google')
-              img(src='https://logo.clearbit.com/twitter.com?size=60' alt='Twitter')
-              img(src='https://logo.clearbit.com/vuejs.org?size=60' alt='Veu.js')
-              img(src='https://logo.clearbit.com/stripe.com?size=60' alt='Stripe')
+              img(src='https://logo.clearbit.com/google.com?size=60', alt='Google')
+              img(src='https://logo.clearbit.com/twitter.com?size=60', alt='Twitter')
+              img(src='https://logo.clearbit.com/vuejs.org?size=60', alt='Veu.js')
+              img(src='https://logo.clearbit.com/stripe.com?size=60', alt='Stripe')
     // footer
     footer.py-5.bg-light
       .container
