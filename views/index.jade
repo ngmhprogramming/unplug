@@ -114,10 +114,11 @@ html(lang='en')
               }
             .row.feature-grid
               .col-sm-12
-                if locals.failed
-                  p.lead.text-muted Unable to identify emotions!
-                else
-                  p.lead.text-muted Your thoughts indicated that you were feeling #{feeling}.
+                if locals.feeling
+                  if locals.failed
+                    p.lead.text-muted Unable to identify emotions!
+                  else
+                    p.lead.text-muted Your thoughts indicated that you were feeling #{feeling}.
               .col-sm-6
                 .media
                   .icon-box
