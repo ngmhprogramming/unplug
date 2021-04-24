@@ -5,7 +5,7 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
     title Unplug - The mental health self help platform
-    meta(name='description', content='Prism is a beautiful Bootstrap 4 template for open-source landing pages.')
+    meta(name='description', content='Unplug is the mental health self help platform')
     // Google font
     link(href='https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800', rel='stylesheet')
     // Bootstrap CSS / Color Scheme
@@ -17,16 +17,14 @@ html(lang='en')
         .row
           .col-12.d-flex.flex-row.align-items-center.justify-content-between
             .heading-brand Unplug
-            a.btn.btn-dark(href='https://prismjs.com/download.html', target='_blank') Bruh
+            a.btn.btn-dark(href='https://prismjs.com/download.html', target='_blank') Contact
         .row.mt-6
           .col-md-8.mx-auto.text-center
-            h1 Syntax Highlighter for Every Language
+            h1 Mood Graphs
             p.lead.mb-5
-              | Prism is a lightweight, extensible syntax highlighter, built with modern web
-              | standards in mind. It’s used in thousands of websites, including some of those you visit daily.
-            a.btn.btn-success.svg-icon(href='https://github.com/LeaVerou/prism/')
-              em.mr-2(data-feather='github')
-              |                     Contribute
+              | Understanding your moods helps you manage them and feel better faster.
+              | If you are more aware of your moods, you may be able to better manage your lifestyle choices,
+              | make informed health decisions, prevent or avoid triggers of negative moods, and work towards a better quality of life.
         .row.mt-5
           .col-md-9.mx-auto
             .code-window
@@ -34,9 +32,15 @@ html(lang='en')
                 .red
                 .orange
                 .green
-                form(action="/", method="POST")
-                  input(name="feeling", type="text")
-                  input(value="Submit", type="submit")
+              br
+              form(action="/", method="POST")
+                div.form-group
+                  label(for="feeling")
+                    h3 What are you thinking today?
+                  input.form-control(name="feeling", type="text", id="feeling", placeholder="Enter your thoughts")
+                button.btn.btn-success.svg-icon(type="submit")
+                  em.mr-2(data-feather='send')
+                  | Log in Mood Graph
     // Features Section
     section.py-6
       .container
@@ -92,16 +96,20 @@ html(lang='en')
                   plugins: {
                     legend: {
                       display: false,
-                      position: "top",
                     },
+                  },
+                  animation: {
+                    animateScale: true,
                   }
-                }
+                },
+                borderAlign: "center",
               };
               window.onload = function(){
                 var myChart = new Chart(
                   document.getElementById('myChart'),
                   config
                 );
+                document.getElementById('myChart').style.margin = "auto";
               }
             .row.feature-grid
               .col-sm-6
@@ -158,14 +166,14 @@ html(lang='en')
           .col-12.text-center
             ul.list-inline
               li.list-inline-item
-                a(href='https://prismjs.com/test.html') Test Drive
+                a(href='/') Mood Graph
               li.list-inline-item
-                a(href='https://prismjs.com/extending.html') API Docs
+                a(href='/users') Find Help
               li.list-inline-item
-                a(href='https://github.com/LeaVerou/prism/') Fork Prism.js on GitHub
+                a(href='/') About
         .row.my-2
           .col-md-4.mx-auto.text-muted.text-center.small-xl
-            | © 2019 Prism - All Rights Reserved
+            | © 2021 Unplug - All Rights Reserved
     // jQuery first, then Popper.js, then Bootstrap JS
     script(src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js')

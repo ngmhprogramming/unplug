@@ -33,7 +33,7 @@ async function evaluate(text){
 
         var score = -1;
         for (let v of tones) {
-          if(v.score > score && v.score > 0.1 && valid.includes(v.tone_id)){
+          if(v.score > score && valid.includes(v.tone_id)){
             score = v.score;
             emotion = v.tone_name;
           }
