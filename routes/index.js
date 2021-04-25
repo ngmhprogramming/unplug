@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   current = req.cookies.data;
   if(current === undefined){
-    current = [];
+    current = ["Anxious", "Anxious", "Sadness", "Anxious", "Anger", "Anxious"];
     res.cookie("data", current);
   }
   res.render('index', { title: "Unplug.", current: current});
@@ -38,6 +38,7 @@ async function evaluate(text){
             emotion = v.tone_name;
           }
         }
+        if(emotion == "Fear") emotion = "Anxious";
         resolve(emotion);
       }
     });
@@ -49,7 +50,7 @@ router.post('/', async function(req, res, next) {
   feeling = await evaluate(req.body.feeling);
   current = req.cookies.data;
   if(current === undefined){
-    current = [];
+    current = ["Anxious", "Anxious", "Sadness", "Anxious", "Anger", "Anxious"];
   }
   failed = false;
   if(feeling != "Unknown") current.push(feeling);
