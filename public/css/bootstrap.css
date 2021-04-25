@@ -5040,7 +5040,7 @@ a:not(.heading-brand) {
 
 /*Feature Grid*/
 .feature-grid {
-  margin-top: 3rem; }
+  margin-top: 1rem; }
   .feature-grid .media {
     display: -ms-flexbox;
     display: flex;
@@ -5048,7 +5048,7 @@ a:not(.heading-brand) {
         align-items: center;
     -ms-flex-direction: row;
         flex-direction: row;
-    margin-bottom: 2.5rem; }
+    margin-bottom: 1rem; }
     .feature-grid .media .media-body {
       font-size: 1.125rem;
       font-weight: 700; }
@@ -5073,7 +5073,6 @@ footer a {
   display: inline-block;
   vertical-align: middle;
   background-color: #ffffff;
-  margin-right: 1rem;
   color: #5cc72a; }
   .icon-box .icon-box-inner {
     display: -ms-flexbox;
@@ -5082,7 +5081,7 @@ footer a {
         flex-direction: row;
     -ms-flex-align: center;
         align-items: center;
-    padding: 1rem; }
+    padding: 0.5rem; }
 
 /*Gradients*/
 .bg-gradient {
