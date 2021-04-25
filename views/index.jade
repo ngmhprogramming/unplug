@@ -65,7 +65,7 @@ html(lang='en')
                 p.lead.text-muted Date:
                 .col-sm-4.pb-3
                   select.custom-select(id="datething")
-                p.lead.text-muted(id="dater") You felt Unknown.
+                p.lead(id="dater") You felt Unknown.
             .row.pb-2
                 .col-md-12.mx-auto
                   if locals.feeling
@@ -216,13 +216,13 @@ html(lang='en')
       };
       $(function() { 
           $('#datething').change(function() {
-              console.log($(this).val());
               feeling = $(this).val();
               if(feeling == "Unknown"){
                 $('#dater').text("No feelings found for "+$("option:selected").text());
               } else {
                 $('#dater').text("You were feeling "+feeling+" on "+$("option:selected").text());
               }
+              $('#dater').css({"color":feelingColours[feeling]});
           }).change(); // Trigger the event
       });
       window.onload = function(){
