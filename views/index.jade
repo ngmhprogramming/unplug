@@ -58,77 +58,22 @@ html(lang='en')
               | Your Mood Graph for 
               span.text-success April 2021
             p.lead.text-muted How were you feeling this month?
-            div
-              canvas(id="myChart")
-            script(src="javascripts/chart.js")
-            script.
-              current = !{JSON.stringify(current)};
-              while(current.length < 30) current.push("Unknown");
-              console.log(current);
-
-              const data = {
-                datasets: [{
-                  label: 'Mood Graph',
-                  hoverOffset: 4
-                }],
-              }
-
-              dataArray = []
-              colourArray = []
-              labelArray = []
-              date = 1
-
-              //background #282C34
-              feelingColours = {
-                "Joy": "#98c379",
-                "Sadness": "#61afef",
-                "Anger": "#e06c75",
-                "Anxious": "#e5c07b",
-                "Unknown": "#abb2bf",
-              }
-
-              for(const feeling of current){
-                dataArray.push(1);
-                colourArray.push(feelingColours[feeling]);
-                labelArray.push(date.toString() + "/4/2021");
-                date += 1;
-              }
-              data.labels = labelArray;
-              data.datasets[0].data = dataArray;
-              data.datasets[0].backgroundColor = colourArray;
-              
-              const config = {
-                type: 'doughnut',
-                data: data,
-                options: { 
-                  responsive: false,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  },
-                  animation: {
-                    animateScale: true,
-                  }
-                },
-                borderAlign: "center",
-              };
-              window.onload = function(){
-                var myChart = new Chart(
-                  document.getElementById('myChart'),
-                  config
-                );
-                document.getElementById('myChart').style.margin = "auto";
-              }
-            br
-            .row
+            div.pb-3
+                canvas(id="myChart")
+            .row.pb-2
+              div.card.card-body
+                p.lead.text-muted Date:
+                .col-sm-4.pb-3
+                  select.custom-select(id="datething")
+                p.lead.text-muted(id="dater") You felt Unknown.
+            .row.pb-2
                 .col-md-12.mx-auto
                   if locals.feeling
                     if locals.failed
                       p.lead.text-muted Unable to identify emotions!
                     else
                       p.lead.text-muted Your thoughts indicated that you were feeling #{feeling}.
-            section.pb-6
+            section.pb-4
               .container
                 .row
                   .col-md-12.mx-auto
@@ -178,7 +123,7 @@ html(lang='en')
                     .media
                       .icon-box
                         .icon-box-inner
-                          span(data-feather='meh', width='28', height='28', color='#abb2bf')
+                          span(data-feather='meh', width='28', height='28', color='#c9c2eb')
                       .media-body
                         | Unknown
     // Used By Section
@@ -216,3 +161,85 @@ html(lang='en')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js')
     script(src='js/scripts.js')
+    script(src="javascripts/chart.js")
+    script.
+      current = !{JSON.stringify(current)};
+      while(current.length < 30) current.push("Unknown");
+      console.log(current);
+
+      const data = {
+        datasets: [{
+          label: 'Mood Graph',
+          hoverOffset: 4
+        }],
+      }
+
+      dataArray = []
+      colourArray = []
+      labelArray = []
+      date = 1
+
+      //background #282C34
+      feelingColours = {
+        "Joy": "#98c379",
+        "Sadness": "#61afef",
+        "Anger": "#e06c75",
+        "Anxious": "#e5c07b",
+        "Unknown": "#c9c2eb",
+      }
+
+      for(const feeling of current){
+        dataArray.push(1);
+        colourArray.push(feelingColours[feeling]);
+        labelArray.push(date.toString() + "/4/2021");
+        date += 1;
+      }
+      data.labels = labelArray;
+      data.datasets[0].data = dataArray;
+      data.datasets[0].backgroundColor = colourArray;
+      
+      const config = {
+        type: 'doughnut',
+        data: data,
+        options: { 
+          responsive: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          animation: {
+            animateScale: true,
+          }
+        },
+        borderAlign: "center",
+      };
+      $(function() { 
+          $('#datething').change(function() {
+              console.log($(this).val());
+              feeling = $(this).val();
+              if(feeling == "Unknown"){
+                $('#dater').text("No feelings found for "+$("option:selected").text());
+              } else {
+                $('#dater').text("You were feeling "+feeling+" on "+$("option:selected").text());
+              }
+          }).change(); // Trigger the event
+      });
+      window.onload = function(){
+        var myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+        document.getElementById('myChart').style.margin = "auto";
+
+        var select = document.getElementById("datething");
+        date = 1;
+        for(const feeling of current){
+          var opt = date.toString()+"/4/2021";
+          date += 1;
+          var el = document.createElement("option");
+          el.textContent = opt;
+          el.value = feeling;
+          select.appendChild(el);
+        }
+      }
